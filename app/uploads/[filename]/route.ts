@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { uploadsDir } from "@/lib/uploads";
 
+export const dynamic = "force-dynamic";
+
 const SAFE_FILENAME = /^[a-zA-Z0-9._-]+$/;
 
 const contentTypeByExt: Record<string, string> = {
@@ -41,8 +43,9 @@ export async function GET(
 
   const ext = filename.split(".").pop()?.toLowerCase() ?? "";
   const contentType = contentTypeByExt[ext] ?? "application/octet-stream";
+  const body = Uint8Array.from(buffer);
 
-  return new Response(buffer, {
+  return new Response(body, {
     headers: {
       "Content-Type": contentType,
       "Cache-Control": "public, max-age=31536000, immutable",
