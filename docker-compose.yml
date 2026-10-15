@@ -12,9 +12,7 @@ services:
       SQLITE_PATH: data/casorio.db
     volumes:
       - casorio-data:/app/data
-      - casorio-uploads:/app/public/uploads
     restart: unless-stopped
 
 volumes:
   casorio-data:
-  casorio-uploads:

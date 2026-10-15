@@ -5,6 +5,10 @@ import path from "node:path";
 
 const allowed = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
+export function uploadsDir() {
+  return path.join(process.cwd(), "data", "uploads");
+}
+
 const faviconTypes = new Set([
   "image/png",
   "image/jpeg",
@@ -22,7 +26,7 @@ export async function saveFavicon(file: File | null) {
   }
   const ext = file.name.split(".").pop()?.toLowerCase() || "png";
   const filename = `favicon-${Date.now()}.${ext}`;
-  const dir = path.join(process.cwd(), "public", "uploads");
+  const dir = uploadsDir();
   fs.mkdirSync(dir, { recursive: true });
   const buffer = Buffer.from(await file.arrayBuffer());
   fs.writeFileSync(path.join(dir, filename), buffer);
@@ -36,7 +40,7 @@ export async function saveUpload(file: File | null, folder: string) {
   }
   const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
   const filename = `${folder}-${Date.now()}.${ext}`;
-  const dir = path.join(process.cwd(), "public", "uploads");
+  const dir = uploadsDir();
   fs.mkdirSync(dir, { recursive: true });
   const buffer = Buffer.from(await file.arrayBuffer());
   fs.writeFileSync(path.join(dir, filename), buffer);

@@ -34,7 +34,7 @@ Parar:
 docker compose down
 ```
 
-O banco SQLite e as imagens enviadas ficam nos volumes `casorio-data` e `casorio-uploads`.
+O banco SQLite e as imagens enviadas ficam no volume `casorio-data` (`data/casorio.db` e `data/uploads/`).
 
 ## Render.com
 
@@ -53,4 +53,6 @@ No painel, em **Environment**, defina:
 
 O `.env` local não entra na imagem (`.dockerignore`); sem essas variáveis no Render o app pode falhar ao abrir o SQLite.
 
-**Disco persistente:** o filesystem do container é efêmero. Para manter banco e uploads entre deploys, adicione um Persistent Disk (plano pago) montado em `/app/data` e, se quiser preservar fotos, também em `/app/public/uploads`.
+**Disco persistente:** o filesystem do container é efêmero. Para manter banco e uploads entre deploys, adicione um Persistent Disk (plano pago) montado em `/app/data` (cobre SQLite e `data/uploads/`).
+
+Depois de atualizar o app, **envie de novo** favicon e foto de capa no admin (uploads antigos em `public/uploads` não são servidos pela rota nova).
