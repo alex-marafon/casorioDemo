@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { FloralHomeWreath } from "@/components/public/FloralDecor";
 import { PublicShell } from "@/components/public/PublicShell";
 import { formatWeddingDate } from "@/lib/format";
-import { parseFloralStyle } from "@/lib/floral";
 import { getSettings } from "@/lib/queries";
 
 export default async function HomePage() {
   const settings = await getSettings();
   const firstBride = settings.brideName.split(" ")[0];
   const firstGroom = settings.groomName.split(" ")[0];
-  const floralStyle = parseFloralStyle(settings.floralStyle);
 
   return (
     <PublicShell settings={settings}>
@@ -25,7 +22,6 @@ export default async function HomePage() {
             : undefined
         }
       >
-        {settings.floralEnabled === 1 ? <FloralHomeWreath style={floralStyle} /> : null}
         <div className="relative z-10 flex flex-col items-center">
           <p className="text-xs tracking-[0.35em] uppercase text-[var(--color-primary)]">O casamento de</p>
           <h1 className="mt-4 font-heading text-5xl leading-tight text-[var(--color-secondary)] md:text-7xl">

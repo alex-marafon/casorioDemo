@@ -143,119 +143,14 @@ function CornerSvg({ style, className }: { style: FloralStyle; className?: strin
   }
 }
 
-function CenterWreath({ style }: { style: FloralStyle }) {
-  const sizeClass = "h-20 w-full max-w-lg md:h-28";
-
-  switch (style) {
-    case "roses":
-      return (
-        <svg viewBox="0 0 400 120" fill="none" className={sizeClass} aria-hidden>
-          <path d="M20 60C60 35 140 35 200 60C260 85 340 85 380 60" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-          <circle cx="80" cy="52" r="8" fill="currentColor" opacity="0.2" />
-          <circle cx="120" cy="44" r="6" fill="currentColor" opacity="0.15" />
-          <circle cx="200" cy="40" r="10" fill="currentColor" opacity="0.22" />
-          <circle cx="280" cy="44" r="6" fill="currentColor" opacity="0.15" />
-          <circle cx="320" cy="52" r="8" fill="currentColor" opacity="0.2" />
-        </svg>
-      );
-    case "olive":
-      return (
-        <svg viewBox="0 0 400 80" fill="none" className={sizeClass} aria-hidden>
-          <path d="M30 40C100 20 300 20 370 40" stroke="currentColor" strokeWidth="1" opacity="0.35" />
-          {[80, 140, 200, 260, 320].map((x, i) => (
-            <ellipse
-              key={x}
-              cx={x}
-              cy={36 - (i % 2) * 4}
-              rx="5"
-              ry="9"
-              fill="currentColor"
-              opacity={0.18 + (i % 3) * 0.04}
-              transform={`rotate(${i % 2 === 0 ? -20 : 20} ${x} ${36 - (i % 2) * 4})`}
-            />
-          ))}
-        </svg>
-      );
-    case "peonies":
-      return (
-        <svg viewBox="0 0 400 100" fill="none" className={sizeClass} aria-hidden>
-          <path d="M25 55C80 30 320 30 375 55" stroke="currentColor" strokeWidth="1" opacity="0.35" />
-          {[70, 130, 200, 270, 330].map((x) => (
-            <g key={x}>
-              <circle cx={x} cy="48" r="10" fill="currentColor" opacity="0.18" />
-              <circle cx={x - 6} cy="44" r="6" fill="currentColor" opacity="0.12" />
-              <circle cx={x + 6} cy="44" r="6" fill="currentColor" opacity="0.12" />
-            </g>
-          ))}
-        </svg>
-      );
-    case "wildflowers":
-      return (
-        <svg viewBox="0 0 400 80" fill="none" className={sizeClass} aria-hidden>
-          <path d="M20 42C100 22 300 22 380 42" stroke="currentColor" strokeWidth="0.9" opacity="0.3" />
-          {[60, 120, 180, 240, 300, 340].map((x) => (
-            <g key={x}>
-              <circle cx={x} cy="38" r="3.5" fill="currentColor" opacity="0.28" />
-              <path d={`M${x} 38L${x} 30`} stroke="currentColor" strokeWidth="0.5" opacity="0.35" />
-            </g>
-          ))}
-        </svg>
-      );
-    case "ivy":
-      return (
-        <svg viewBox="0 0 400 90" fill="none" className={sizeClass} aria-hidden>
-          <path d="M15 50C90 28 310 28 385 50" stroke="currentColor" strokeWidth="1" opacity="0.35" />
-          {[70, 140, 200, 260, 330].map((x) => (
-            <path
-              key={x}
-              d={`M${x} 46C${x + 8} 38 ${x + 16} 38 ${x + 14} 48C${x + 12} 58 ${x + 4} 56 ${x} 46Z`}
-              fill="currentColor"
-              opacity="0.16"
-            />
-          ))}
-        </svg>
-      );
-    default:
-      return (
-        <svg viewBox="0 0 400 80" fill="none" className={sizeClass} aria-hidden>
-          <path d="M25 42C110 22 290 22 375 42" stroke="currentColor" strokeWidth="0.9" opacity="0.3" />
-          {[70, 130, 200, 270, 330].map((x) => (
-            <ellipse
-              key={x}
-              cx={x}
-              cy="38"
-              rx="14"
-              ry="5"
-              fill="currentColor"
-              opacity="0.16"
-              transform={`rotate(${x < 200 ? -25 : 25} ${x} 38)`}
-            />
-          ))}
-        </svg>
-      );
-  }
-}
-
 /** Cantos fixos em todas as páginas públicas */
 export function FloralSiteDecor({ style }: { style: FloralStyle }) {
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
+    <div className="pointer-events-none fixed inset-0 z-20 overflow-hidden" aria-hidden>
       <CornerSvg style={style} className={`absolute -left-4 -top-4 ${CORNER_SIZE}`} />
       <CornerSvg style={style} className={`absolute -right-4 -top-4 scale-x-[-1] ${CORNER_SIZE}`} />
       <CornerSvg style={style} className={`absolute -bottom-4 -left-4 scale-y-[-1] ${CORNER_SIZE}`} />
       <CornerSvg style={style} className={`absolute -bottom-4 -right-4 scale-[-1] ${CORNER_SIZE}`} />
-    </div>
-  );
-}
-
-/** Detalhe central só no hero da home */
-export function FloralHomeWreath({ style }: { style: FloralStyle }) {
-  return (
-    <div
-      className="pointer-events-none absolute left-1/2 top-[16%] z-[1] w-full -translate-x-1/2 text-[var(--color-primary)] opacity-50 md:top-[14%]"
-      aria-hidden
-    >
-      <CenterWreath style={style} />
     </div>
   );
 }
