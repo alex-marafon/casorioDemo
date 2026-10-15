@@ -25,11 +25,14 @@ RUN addgroup --system --gid 1001 nodejs \
   && mkdir -p data public/uploads \
   && chown -R nextjs:nodejs data public/uploads
 
-COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/better-sqlite3 ./node_modules/better-sqlite3
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/better-sqlite3-multiple-ciphers ./node_modules/better-sqlite3-multiple-ciphers
+
+RUN chown -R nextjs:nodejs /app/data /app/public/uploads \
+  && chmod -R u+rwX /app/data /app/public/uploads
 
 USER nextjs
 EXPOSE 3000
