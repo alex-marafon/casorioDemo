@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #8b6914;
+  --color-secondary: #5c4033;
+  --color-bg: #f7f1ea;
+  --color-accent: #c9a66b;
+  --font-heading: var(--font-playfair), "Times New Roman", serif;
+  --font-body: var(--font-lato), Georgia, sans-serif;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.site-shell[data-heading="cormorant"] {
+  --font-heading: var(--font-cormorant), "Times New Roman", serif;
+}
+
+.site-shell[data-heading="vibes"] {
+  --font-heading: var(--font-vibes), cursive;
+}
+
+.site-shell[data-body="source"] {
+  --font-body: var(--font-source), Georgia, sans-serif;
+}
+
+.site-shell[data-body="lora"] {
+  --font-body: var(--font-lora), Georgia, serif;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff8ee;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+  color: var(--color-primary);
+  background: transparent;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid #d8cfc3;
+  background: #fff;
+  border-radius: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  color: #3d3229;
+}
+
+.field:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 70%, white);
+  border-color: var(--color-accent);
+}
+
+.admin-field {
+  width: 100%;
+  border: 1px solid #d6d3cd;
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 0.65rem 0.8rem;
+}
+
+.admin-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6258;
+  margin-bottom: 0.35rem;
+}

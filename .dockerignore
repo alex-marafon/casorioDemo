@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.db-journal
+README.md
+.cursor
+*.md
+Dockerfile
+docker-compose.yml
+.dockerignore

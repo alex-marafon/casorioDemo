@@ -1,0 +1,19 @@
+services:
+  casorio:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+      SQLITE_PATH: data/casorio.db
+    volumes:
+      - casorio-data:/app/data
+      - casorio-uploads:/app/public/uploads
+    restart: unless-stopped
+
+volumes:
+  casorio-data:
+  casorio-uploads:
